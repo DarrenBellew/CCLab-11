@@ -7,8 +7,13 @@ def getKeyandId():
 	return (keyId, key)
 
 def createQueue(conn, queueName):
-	conn.create_queue(queueName)
-	print("queue '" + queueName + "'' is now created.")
+	rs = conn.get_all_queues()
+	if "/747210654827/"+queueName in rs:
+		conn.create_queue(conn.get_queue('queueName'))
+		print("queue '" + queueName + "' is now created.")
+	else:
+		print("queue '" + queueNAme + "' is not created.")
+
 
 #Main Code
 keyId, key = getKeyandId()
