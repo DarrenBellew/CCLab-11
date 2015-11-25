@@ -13,6 +13,15 @@ from boto.sqs.connection import SQSConnection
 from boto.exception import SQSError
 import sys
 
+def getKeyandId():
+
+	res = requests.get('http://ec2-52-30-7-5.eu-west-1.compute.amazonaws.com:81/key')
+	keyId, key = res.text.split(":")
+	return (keyId, key)
+
+
+
+
 # Get the keys from a specific url and then use them to connect to AWS Service 
 access_key_id, secret_access_key = getKeyandId()
 
@@ -24,10 +33,4 @@ rs = conn.get_all_queues()
 for q in rs:
 	print q.id
 
-
-def getKeyandId():
-
-	res = requests.get('http://ec2-52-30-7-5.eu-west-1.compute.amazonaws.com:81/key')
-	keyId, key = res.text.split(":")
-	return (keyId, key)
 
