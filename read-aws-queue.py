@@ -24,4 +24,4 @@ conn = boto.sqs.connect_to_region("eu-west-1", aws_access_key_id=keyId, aws_secr
 m = getMessage(conn, "C13729611_" + sys.argv[1])
 print ("Messages of queue: ")
 for i in m:
-	print(i+"\n")
+	print(i)
