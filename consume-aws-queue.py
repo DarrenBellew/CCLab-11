@@ -7,20 +7,13 @@ def getKeyandId():
 	keyId, key = res.text.split(":")
 	return (keyId, key)
 
-def getMessage(conn, queueName):
-	m = []
-	
-	q = conn.get_queue(queueName)
-		
-		
-	for i in range(0,q.count()):
-		m.append(q.read(60).get_body())
-	return str(m)
+
 	
 def deleteMessage(conn, queueName):
 	q = conn.get_queue(queueName)
 	m = q.read(60)
 	q.delete_message(m)
+	return m
 
 
 
@@ -29,10 +22,8 @@ keyId, key = getKeyandId()
 
 conn = boto.sqs.connect_to_region("eu-west-1", aws_access_key_id=keyId, aws_secret_access_key=key)
 QUEUE = "C13729611_" + sys.argv[1]
-m = getMessage(conn, "C13729611_" + QUEUE)
-print ("Messages of queue: " + m)
 
-print ("Removing message")
-deleteMessage(conn, "C13729611_" + QUEUE)
-m = getMessage(conn, "C13729611_" + QUEUE)
-print ("Messages of queue " + m)
+
+
+print ("Removing message: " + deleteMessage(conn, "C13729611_" + QUEUE))
+print ("Message removed from queue")
