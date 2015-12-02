@@ -23,7 +23,5 @@ keyId, key = getKeyandId()
 conn = boto.sqs.connect_to_region("eu-west-1", aws_access_key_id=keyId, aws_secret_access_key=key)
 QUEUE = "C13729611_" + sys.argv[1]
 
-
-
-print ("Removing message: " + deleteMessage(conn, "C13729611_" + QUEUE))
+print ("Removing message: " + deleteMessage(conn, QUEUE))
 print ("Message removed from queue")
