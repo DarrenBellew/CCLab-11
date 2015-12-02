@@ -7,15 +7,17 @@ def getKeyandId():
 	return (keyId, key)
 
 def getMessage(conn, queueName):
+	m = []
 	try:
 		q = conn.get_queue(queueName)
 		
-		m = []
+		
 		for i in range(0,q.count()):
 			m.append(q.read(60).get_body())
-		return m
+		return str(m) 
 	except Queue.Empty:
-		return "Queue is empty, no messages read"
+		m.append("Queue is empty, no messages read")
+		return m
 def deleteMessage(conn, queueName, message):
 	q = conn.get_queue(queueName)
 	q.deleteMessage(message)
@@ -33,4 +35,4 @@ print ("Messages of queue: " + m)
 print ("Removing message " + sys.argv[2])
 deleteMessage(conn, "C13729611_" + sys.argv[1], sys.argv[2])
 m = getMessage(conn, "C13729611_" + sys.argv[1])
-print ("Messages of queue " + m)
+print ("Messages of queue " + str(m))
