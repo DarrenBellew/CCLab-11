@@ -6,7 +6,7 @@ def getKeyandId():
 	keyId, key = res.text.split(":")
 	return (keyId, key)
 
-def messageQueue(conn, queueName):
+def countQueue(conn, queueName):
 	return conn.get_queue(queueName).count()
 
 #Main Code
