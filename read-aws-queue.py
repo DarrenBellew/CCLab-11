@@ -9,7 +9,7 @@ def getKeyandId():
 def readQueue(conn, queueName):
 	q = conn.get_queue(queueName)
 	
-	m[]
+	m = []
 	for i in range(0,q.count()):
 		m.append(q.read(1).get_body())
 	return m
@@ -21,7 +21,7 @@ keyId, key = getKeyandId()
 
 conn = boto.sqs.connect_to_region("eu-west-1", aws_access_key_id=keyId, aws_secret_access_key=key)
 
-m[] = getMessage(conn, "C13729611_" + sys.argv[1])
+m = getMessage(conn, "C13729611_" + sys.argv[1])
 print ("Messages of queue: ")
 for i in m:
 	print(i+"\n")
