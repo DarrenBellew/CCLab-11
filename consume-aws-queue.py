@@ -28,11 +28,11 @@ def deleteMessage(conn, queueName):
 keyId, key = getKeyandId()
 
 conn = boto.sqs.connect_to_region("eu-west-1", aws_access_key_id=keyId, aws_secret_access_key=key)
-
-m = getMessage(conn, "C13729611_" + sys.argv[1])
+QUEUE = "C13729611_" + sys.argv[1]
+m = getMessage(conn, "C13729611_" + QUEUE)
 print ("Messages of queue: " + m)
 
 print ("Removing message")
-deleteMessage(conn, "C13729611_" + sys.argv[1])
-m = getMessage(conn, "C13729611_" + sys.argv[1])
+deleteMessage(conn, "C13729611_" + QUEUE)
+m = getMessage(conn, "C13729611_" + QUEUE)
 print ("Messages of queue " + m)
