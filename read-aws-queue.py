@@ -6,7 +6,7 @@ def getKeyandId():
 	keyId, key = res.text.split(":")
 	return (keyId, key)
 
-def readQueue(conn, queueName):
+def getMessage(conn, queueName):
 	q = conn.get_queue(queueName)
 	
 	m = []
