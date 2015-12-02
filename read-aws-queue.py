@@ -11,7 +11,7 @@ def getMessage(conn, queueName):
 	
 	m = []
 	for i in range(0,q.count()):
-		m.append(q.read(1).get_body())
+		m.append(q.read(60).get_body())
 	return m
 
 
