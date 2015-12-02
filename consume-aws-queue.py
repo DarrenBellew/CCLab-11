@@ -16,7 +16,7 @@ def getMessage(conn, queueName):
 		m.append(q.read(60).get_body())
 	return str(m)
 	
-def deleteMessage(conn, queueName, message):
+def deleteMessage(conn, queueName):
 	q = conn.get_queue(queueName)
 	m = q.read(60)
 	q.delete_message(m)
@@ -32,6 +32,6 @@ m = getMessage(conn, "C13729611_" + sys.argv[1])
 print ("Messages of queue: " + m)
 
 print ("Removing message " + sys.argv[2])
-deleteMessage(conn, "C13729611_" + sys.argv[1], sys.argv[2])
+deleteMessage(conn, "C13729611_" + sys.argv[1])
 m = getMessage(conn, "C13729611_" + sys.argv[1])
 print ("Messages of queue " + str(m))
