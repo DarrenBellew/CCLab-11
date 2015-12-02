@@ -15,4 +15,4 @@ keyId, key = getKeyandId()
 
 conn = boto.sqs.connect_to_region("eu-west-1", aws_access_key_id=keyId, aws_secret_access_key=key)
 
-print ("Number of queues: " + str(countQueue(conn, "C13729611_" + sys.argv[1]))
+print ("Number of queues: " + str(countQueue(conn, "C13729611_" + sys.argv[1])))
