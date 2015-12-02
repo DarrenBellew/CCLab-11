@@ -8,16 +8,14 @@ def getKeyandId():
 
 def getMessage(conn, queueName):
 	m = []
-	try:
-		q = conn.get_queue(queueName)
+	
+	q = conn.get_queue(queueName)
 		
 		
-		for i in range(0,q.count()):
-			m.append(q.read(60).get_body())
-		return str(m) 
-	except Queue.Empty:
-		m.append("Queue is empty, no messages read")
-		return m
+	for i in range(0,q.count()):
+		m.append(q.read(60).get_body())
+	return str(m) 
+	
 def deleteMessage(conn, queueName, message):
 	q = conn.get_queue(queueName)
 	q.delete_message(message)
