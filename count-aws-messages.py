@@ -7,7 +7,8 @@ def getKeyandId():
 	return (keyId, key)
 
 def countQueue(conn, queueName):
-	return conn.get_queue(queueName).count()
+	q = conn.get_queue(queueName)
+	return q.count()
 
 #Main Code
 keyId, key = getKeyandId()
