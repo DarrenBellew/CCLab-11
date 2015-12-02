@@ -14,11 +14,12 @@ def getMessage(conn, queueName):
 		
 	for i in range(0,q.count()):
 		m.append(q.read(60).get_body())
-	return str(m) 
+	return str(m)
 	
 def deleteMessage(conn, queueName, message):
 	q = conn.get_queue(queueName)
-	q.delete_message(message)
+	m = q.read(60)
+	q.delete_message(m)
 
 
 
