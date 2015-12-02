@@ -6,12 +6,16 @@ def getKeyandId():
 	keyId, key = res.text.split(":")
 	return (keyId, key)
 
-def createQueue(conn, queueName):
-	
-	conn.create_queue(queueName)
-	print("queue '" + queueName + "'' is now created.")
+def messageQueue(conn, queueName, message):
+	q = conn.get_queue(queueName)
+
+	if q != None:
+		q.write(message)
+		print("Message '" + m.get_body() + "' is written to queue: " + queueName )
 
 #Main Code
 keyId, key = getKeyandId()
+
 conn = boto.sqs.connect_to_region("eu-west-1", aws_access_key_id=keyId, aws_secret_access_key=key)
-createQueue(conn, "C13729611_" + sys.argv[1])
+m = Message.set_body(sys.argv[2])
+messageQueue(conn, "C13729611_" + sys.argv[1], m)
