@@ -20,7 +20,7 @@ def getMessage(conn, queueName):
 		return m
 def deleteMessage(conn, queueName, message):
 	q = conn.get_queue(queueName)
-	q.deleteMessage(message)
+	q.delete_message(message)
 
 
 
