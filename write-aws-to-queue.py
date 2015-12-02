@@ -17,5 +17,6 @@ def messageQueue(conn, queueName, message):
 keyId, key = getKeyandId()
 
 conn = boto.sqs.connect_to_region("eu-west-1", aws_access_key_id=keyId, aws_secret_access_key=key)
-m = Message.set_body(sys.argv[2])
+m = Message()
+m.set_body(sys.argv[2])
 messageQueue(conn, "C13729611_" + sys.argv[1], m)
